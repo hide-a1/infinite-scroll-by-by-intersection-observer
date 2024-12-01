@@ -1,0 +1,19 @@
+<mat-accordion>
+  <mat-expansion-panel [expanded]="true">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{ post().id }} </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    @if (post().data; as data) {
+    <p>
+      {{ data.body }}
+    </p>
+    } @else {
+    <div
+      style="display: grid; min-height: 48px; width: 100%; place-items: center"
+    >
+      <mat-spinner [diameter]="30" color="primary"></mat-spinner>
+    </div>
+    }
+  </mat-expansion-panel>
+</mat-accordion>

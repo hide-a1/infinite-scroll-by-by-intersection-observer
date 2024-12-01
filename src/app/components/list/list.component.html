@@ -1,0 +1,7 @@
+<div style="display: grid; gap: 8px; padding: 8px">
+  @for (post of list(); track post.id) {
+  <div inViewport [debounceTime]="1000" (inViewport)="inViewport.emit(post.id)">
+    <app-detail [post]="post" />
+  </div>
+  }
+</div>
