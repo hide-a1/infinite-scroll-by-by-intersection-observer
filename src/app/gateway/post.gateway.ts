@@ -10,8 +10,7 @@ export class PostGateway {
     return await response.json();
   }
 
-  async getPosts(): Promise<Post[]> {
-    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-    return await response.json();
+  getPostIds(length: number): number[] {
+    return Array.from({ length }, (_, i) => i);
   }
 }
