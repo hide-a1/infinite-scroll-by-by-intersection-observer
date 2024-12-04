@@ -15,6 +15,7 @@ import { debounceTime, filter, Subject } from 'rxjs';
 })
 export class InViewportDirective implements OnDestroy, AfterViewInit {
   private element = inject(ElementRef);
+
   debounceTime = input(0);
 
   inViewport = output<void>();
