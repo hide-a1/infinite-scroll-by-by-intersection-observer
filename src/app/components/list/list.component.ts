@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ListData } from '../../app.component';
 import { InViewportDirective } from '../../in-viewport.directive';
 import { DetailComponent } from '../detail/detail.component';
@@ -13,6 +13,4 @@ import { DetailComponent } from '../detail/detail.component';
 export class ListComponent {
   list = input.required<ListData[]>();
   inViewport = output<number>();
-
-  visibleMap = signal<Map<number, boolean>>(new Map<number, boolean>());
 }
