@@ -43,7 +43,7 @@ export class InViewportDirective implements OnDestroy, AfterViewInit {
         filter((value) => value !== undefined)
       )
       .subscribe(async ({ entry }) => {
-        if (entry.isIntersecting && entry.intersectionRatio > 0) {
+        if (entry.isIntersecting) {
           this.inViewport.emit();
           this.observer.disconnect();
         }
