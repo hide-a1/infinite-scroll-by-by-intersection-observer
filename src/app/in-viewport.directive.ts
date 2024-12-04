@@ -19,19 +19,13 @@ export class InViewportDirective implements OnDestroy, AfterViewInit {
 
   inViewport = output<void>();
 
-  private observer!: IntersectionObserver;
-  private subject$ = new Subject<
-    | {
-        entry: IntersectionObserverEntry;
-        observer: IntersectionObserver;
-      }
-    | undefined
-  >();
+  private observer: IntersectionObserver | undefined;
+  private subject$ = new Subject<IntersectionObserverEntry | undefined>();
 
   ngAfterViewInit(): void {
-    this.observer = new IntersectionObserver((entries, observer) => {
+    this.observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        this.subject$.next({ entry, observer });
+        this.subject$.next(entry);
       });
     });
 
@@ -42,15 +36,15 @@ export class InViewportDirective implements OnDestroy, AfterViewInit {
         debounceTime(this.debounceTime()),
         filter((value) => value !== undefined)
       )
-      .subscribe(async ({ entry }) => {
+      .subscribe(async (entry) => {
         if (entry.isIntersecting) {
           this.inViewport.emit();
-          this.observer.disconnect();
+          this.observer?.disconnect();
         }
       });
   }
 
   ngOnDestroy(): void {
-    this.observer.disconnect();
+    this.observer?.disconnect();
   }
 }
