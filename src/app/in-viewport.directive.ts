@@ -11,7 +11,6 @@ import { debounceTime, filter, Subject } from 'rxjs';
 
 @Directive({
   selector: '[inViewport]',
-  standalone: true,
 })
 export class InViewportDirective implements OnDestroy, AfterViewInit {
   private element = inject(ElementRef);
